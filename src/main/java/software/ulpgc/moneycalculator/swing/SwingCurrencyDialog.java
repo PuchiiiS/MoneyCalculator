@@ -12,11 +12,19 @@ public class SwingCurrencyDialog extends JPanel implements CurrencyDialog {
     private JComboBox<Currency> currencySelector;
 
     public SwingCurrencyDialog() {
+        setLayout(new FlowLayout(FlowLayout.CENTER));
+        currencySelector = new JComboBox<>();
+        currencySelector.setFont(new Font("Arial", Font.PLAIN, 14));
+        currencySelector.setForeground(Color.BLACK);
+        currencySelector.setToolTipText("Select a currency");
+        add(currencySelector);
     }
 
     @Override
     public CurrencyDialog define(List<Currency> currencies) {
-        add(createCurrencySelector(currencies));
+        for (Currency currency : currencies) {
+            currencySelector.addItem(currency);
+        }
         return this;
     }
 
